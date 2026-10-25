@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { NotFoundError, ValidationError } from '../errors';
+import { NotFoundError } from '../errors';
 import type { VehicleFilters, VehicleRepository } from '../repositories/vehicleRepository';
 import type { Vehicle } from '../types';
-import { parseOrThrow } from './authService';
+import { parseOrThrow } from '../validation';
 
 const text = (label: string) => z.string({ error: `${label} is required` }).trim().min(1, `${label} is required`).max(80);
 
@@ -66,5 +66,3 @@ export class VehicleService {
     return this.vehicles.findAll(filters);
   }
 }
-
-export { ValidationError };

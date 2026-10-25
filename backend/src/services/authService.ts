@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { z } from 'zod';
-import { ConflictError, UnauthorizedError, ValidationError } from '../errors';
+import { ConflictError, UnauthorizedError } from '../errors';
 import type { UserRepository } from '../repositories/userRepository';
 import type { AuthContext, Role, User } from '../types';
+import { parseOrThrow } from '../validation';
 
 export interface AuthConfig {
   jwtSecret: string;
@@ -22,16 +23,6 @@ const loginSchema = z.object({
 });
 
 const BCRYPT_ROUNDS = 10;
-
-/** Parses with zod and converts failures into a ValidationError. */
-export function parseOrThrow<T>(schema: z.ZodType<T>, input: unknown): T {
-  const result = schema.safeParse(input);
-  if (!result.success) {
-    const issues = result.error.issues.map((i) => ({ field: i.path.join('.'), message: i.message }));
-    throw new ValidationError(issues[0]?.message ?? 'Validation failed', issues);
-  }
-  return result.data;
-}
 
 /** Registration, login and JWT handling. */
 export class AuthService {

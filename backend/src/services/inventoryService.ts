@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { ConflictError, NotFoundError } from '../errors';
 import type { VehicleRepository } from '../repositories/vehicleRepository';
 import type { Vehicle } from '../types';
-import { parseOrThrow } from './authService';
+import { parseOrThrow } from '../validation';
 
 const quantitySchema = z.object({
   quantity: z

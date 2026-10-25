@@ -151,6 +151,12 @@ describe('HTTP API', () => {
     });
   });
 
+  it('returns 400 for a malformed JSON body', async () => {
+    const res = await request(app).post('/api/auth/login').set('Content-Type', 'application/json').send('{bad json');
+    expect(res.status).toBe(400);
+    expect(res.body.error).toMatch(/json/i);
+  });
+
   it('GET /api/health is public', async () => {
     expect((await request(app).get('/api/health')).status).toBe(200);
   });
