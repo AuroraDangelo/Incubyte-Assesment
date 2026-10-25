@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: car-dealership
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 8h
+      - key: ADMIN_EMAIL
+        value: admin@dealership.test
+      - key: ADMIN_PASSWORD
+        value: Admin@12345
+
+    # Optional persistent disk for SQLite (requires Render Starter plan or above):
+    # disk:
+    #   name: dealership-db-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # envVars:
+    #   - key: DB_PATH
+    #     value: /var/data/dealership.db

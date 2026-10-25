@@ -116,5 +116,9 @@ Latest results (full output in [`docs/test-report.md`](docs/test-report.md)):
 
 Raw chat logs: see [`PROMPTS.md`](PROMPTS.md).
 
-## Deployment (optional)
-Not deployed. The frontend is a static build (Vercel/Netlify); the API needs a host with a persistent disk for the SQLite file (Render, Fly.io, Railway) – set `JWT_SECRET`, `DB_PATH`, and `CORS_ORIGIN`, and point the frontend at the API (reverse-proxy `/api`).
+## Deployment
+
+The project is fully pre-configured for one-click deployment on **Render** (as well as Railway or Docker container). The Express server serves both the REST API (`/api/*`) and the compiled React single-page application (`frontend/dist`), eliminating CORS configuration and complex reverse-proxies.
+
+- **Render Blueprint**: Configured via [`render.yaml`](render.yaml) with automatic environment variable generation and health checks (`/api/health`).
+- **Complete Walkthrough**: See [`DEPLOYMENT.md`](DEPLOYMENT.md) for full step-by-step instructions.

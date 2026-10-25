@@ -1,4 +1,3 @@
-# PROMPTS.md
 
 This document contains the public share links to the raw, unedited AI conversation transcripts used during the development of this project, in accordance with the Incubyte AI Usage Policy.
 

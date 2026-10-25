@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import Database from 'better-sqlite3';
 import type { Database as Db } from 'better-sqlite3';
 
@@ -31,6 +33,12 @@ CREATE INDEX IF NOT EXISTS idx_vehicles_category ON vehicles (category);
  * Foreign keys and WAL are enabled for integrity and read concurrency.
  */
 export function createDatabase(filePath: string): Db {
+  if (filePath !== ':memory:') {
+    const dir = path.dirname(filePath);
+    if (dir && !fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  }
   const db = new Database(filePath);
   db.pragma('journal_mode = WAL');
   db.pragma('foreign_keys = ON');
