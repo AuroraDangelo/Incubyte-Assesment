@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-concrete font-sans text-asphalt antialiased; }
+  h1, h2, h3 { font-family: Archivo, system-ui, sans-serif; font-stretch: 112%; letter-spacing: -0.01em; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-racing; }
+}
+
+@layer components {
+  .field { @apply w-full rounded-md border border-asphalt/25 bg-white px-3 py-2 text-sm placeholder:text-asphalt/40 focus:border-racing; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-racing text-white hover:bg-racing-dark disabled:bg-asphalt/20 disabled:text-asphalt/50; }
+  .btn-quiet { @apply btn border border-asphalt/25 bg-white text-asphalt hover:bg-asphalt/5; }
+  .btn-danger { @apply btn border border-brake/40 bg-white text-brake hover:bg-brake/10; }
+  /* Number-plate styled panel used for the search strip */
+  .plate { @apply rounded-xl border-4 border-asphalt bg-plate p-1 shadow-[0_3px_0_0_#17201D]; }
+  .plate-inner { @apply rounded-lg border-2 border-asphalt/70 bg-plate px-4 py-3; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
