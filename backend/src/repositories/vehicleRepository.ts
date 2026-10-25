@@ -70,4 +70,26 @@ export class VehicleRepository {
   delete(id: number): boolean {
     return this.db.prepare('DELETE FROM vehicles WHERE id = ?').run(id).changes > 0;
   }
+
+  /**
+   * Atomically removes `qty` units. The `quantity >= ?` guard sits inside the
+   * UPDATE itself, so concurrent buyers can never push stock below zero.
+   * @returns true when the stock was decremented, false if there was not enough.
+   */
+  decrementStock(id: number, qty: number): boolean {
+    return (
+      this.db
+        .prepare("UPDATE vehicles SET quantity = quantity - ?, updated_at = datetime('now') WHERE id = ? AND quantity >= ?")
+        .run(qty, id, qty).changes > 0
+    );
+  }
+
+  /** Atomically adds `qty` units to stock. */
+  incrementStock(id: number, qty: number): boolean {
+    return (
+      this.db
+        .prepare("UPDATE vehicles SET quantity = quantity + ?, updated_at = datetime('now') WHERE id = ?")
+        .run(qty, id).changes > 0
+    );
+  }
 }
