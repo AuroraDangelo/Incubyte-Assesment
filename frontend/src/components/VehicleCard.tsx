@@ -17,7 +17,7 @@ export default function VehicleCard({ vehicle: v, isAdmin, busy, onPurchase, onE
   const low = v.quantity > 0 && v.quantity <= 2;
 
   return (
-    <article className="relative flex flex-col overflow-hidden rounded-lg border border-asphalt/20 bg-paper shadow-sm">
+    <article className="relative flex w-full flex-col overflow-hidden rounded-lg border border-asphalt/20 bg-paper shadow-sm">
       <div className="h-2" style={{ backgroundColor: swatchFor(v.category) }} aria-hidden />
       <div className="flex flex-1 flex-col gap-4 p-5">
         <header className="flex items-start justify-between gap-3">
@@ -31,7 +31,7 @@ export default function VehicleCard({ vehicle: v, isAdmin, busy, onPurchase, onE
           <span aria-hidden className="mt-1 h-4 w-4 shrink-0 rounded-full border-2 border-asphalt/30 bg-concrete" />
         </header>
 
-        <div className="flex items-end justify-between">
+        <div className="flex flex-wrap items-end justify-between gap-x-3 gap-y-1">
           <p className="font-display text-3xl font-black tracking-tight">{formatPrice(v.price)}</p>
           <p className={`text-sm font-semibold ${soldOut ? 'text-brake' : low ? 'text-[#8A5A00]' : 'text-racing'}`}>
             {soldOut ? 'Sold out' : `${v.quantity} in stock`}{low && ' – going fast'}

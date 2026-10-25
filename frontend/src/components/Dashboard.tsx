@@ -124,8 +124,7 @@ export default function Dashboard({ user, onLogout }: Props) {
 
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {vehicles.map((v) => (
-            <li key={v.id} className="flex">
-              <div className="flex w-full">
+            <li key={v.id} className="flex min-w-0">
                 <VehicleCard
                   vehicle={v}
                   isAdmin={isAdmin}
@@ -135,7 +134,6 @@ export default function Dashboard({ user, onLogout }: Props) {
                   onRestock={(x) => setDialog({ kind: 'restock', vehicle: x })}
                   onDelete={(x) => setDialog({ kind: 'delete', vehicle: x })}
                 />
-              </div>
             </li>
           ))}
         </ul>

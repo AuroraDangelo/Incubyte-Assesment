@@ -1,0 +1,12 @@
+{
+  "name": "car-dealership-inventory",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "seed": "npm --prefix backend run seed",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend test && npm --prefix frontend test",
+    "test:report": "bash scripts/test-report.sh"
+  }
+}
