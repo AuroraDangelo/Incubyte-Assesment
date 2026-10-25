@@ -91,7 +91,7 @@ export default function Dashboard({ user, onLogout }: Props) {
     <div className="min-h-screen">
       <header className="border-b border-asphalt/15 bg-paper">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <p className="font-display text-lg font-extrabold" style={{ fontStretch: '125%' }}>Kerbside Motors</p>
+          <p className="font-display text-lg font-extrabold" style={{ fontStretch: '125%' }}>Bharat Motors</p>
           <div className="flex items-center gap-3 text-sm">
             <span className="hidden sm:inline">{user.name}</span>
             {isAdmin && <span className="rounded bg-plate px-2 py-0.5 text-xs font-bold">Admin</span>}
@@ -103,9 +103,9 @@ export default function Dashboard({ user, onLogout }: Props) {
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-black sm:text-5xl">On the lot</h1>
+            <h1 className="text-3xl font-black sm:text-5xl">Showroom Inventory</h1>
             <p className="mt-2 text-asphalt/70" aria-live="polite">
-              {loading ? 'Counting cars…' : `${vehicles.length} model${vehicles.length === 1 ? '' : 's'}, ${total} unit${total === 1 ? '' : 's'} ready to drive away`}
+              {loading ? 'Counting cars…' : `${vehicles.length} model${vehicles.length === 1 ? '' : 's'}, ${total} unit${total === 1 ? '' : 's'} ready for delivery`}
             </p>
           </div>
           {isAdmin && <button className="btn-primary" onClick={() => setDialog({ kind: 'add' })}>Add vehicle</button>}
@@ -117,7 +117,7 @@ export default function Dashboard({ user, onLogout }: Props) {
 
         {!loading && !loadError && vehicles.length === 0 && (
           <div className="mt-10 rounded-lg border-2 border-dashed border-asphalt/25 p-10 text-center">
-            <p className="text-lg font-bold">Nothing on the lot matches.</p>
+            <p className="text-lg font-bold">Nothing in the showroom matches.</p>
             <p className="mt-1 text-sm text-asphalt/70">Loosen the price range or clear a filter.</p>
           </div>
         )}

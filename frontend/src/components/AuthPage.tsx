@@ -35,7 +35,7 @@ export default function AuthPage({ onLogin, onRegister }: Props) {
   return (
     <main className="grid min-h-screen lg:grid-cols-[1.1fr_1fr]">
       <section className="relative flex flex-col justify-between overflow-hidden bg-racing-dark p-8 text-paper sm:p-12">
-        <p className="font-display text-lg font-extrabold tracking-tight" style={{ fontStretch: '125%' }}>Kerbside Motors</p>
+        <p className="font-display text-lg font-extrabold tracking-tight" style={{ fontStretch: '125%' }}>Bharat Motors</p>
         <div className="my-16 max-w-xl">
           <h1 className="text-4xl font-black leading-[1.05] sm:text-6xl">Every car on the lot, accounted for.</h1>
           <p className="mt-6 max-w-md text-lg text-paper/75">

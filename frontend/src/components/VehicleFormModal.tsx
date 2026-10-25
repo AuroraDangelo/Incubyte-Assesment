@@ -23,7 +23,7 @@ export default function VehicleFormModal({ initial, onSubmit, onClose }: Props) 
     e.preventDefault();
     const p = Number(price);
     const q = Number(quantity);
-    if (!make.trim() || !model.trim() || !category.trim()) return setError('Make, model and category are required');
+    if (!make.trim() || !model.trim() || !category.trim()) return setError('Brand, model and category are required');
     if (price.trim() === '' || !Number.isFinite(p) || p < 0) return setError('Price must be zero or more');
     if (quantity.trim() === '' || !Number.isInteger(q) || q < 0) return setError('Quantity must be a whole number, zero or more');
 
@@ -48,13 +48,13 @@ export default function VehicleFormModal({ initial, onSubmit, onClose }: Props) 
     <Modal title={initial ? `Edit ${initial.make} ${initial.model}` : 'Add a vehicle'} onClose={onClose}>
       <form onSubmit={submit} className="space-y-4" noValidate>
         <div className="grid grid-cols-2 gap-4">
-          {text('make', 'Make', make, setMake)}
+          {text('make', 'Brand', make, setMake)}
           {text('model', 'Model', model, setModel)}
         </div>
         {text('category', 'Category', category, setCategory)}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="price" className="mb-1 block text-sm font-medium">Price (USD)</label>
+            <label htmlFor="price" className="mb-1 block text-sm font-medium">Price (₹ INR)</label>
             <input id="price" type="number" inputMode="decimal" className="field" value={price} onChange={(e) => setPrice(e.target.value)} />
           </div>
           <div>

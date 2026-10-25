@@ -21,18 +21,25 @@ if (!users.findByEmail(adminEmail)) {
   console.log(`Created admin ${adminEmail} / ${adminPassword}`);
 }
 
+if (process.argv.includes('--reset')) {
+  db.exec('DELETE FROM vehicles');
+  console.log('Cleared existing vehicles.');
+}
+
 if (vehicles.findAll().length === 0) {
   const samples = [
-    ['Toyota', 'Corolla', 'Sedan', 21500, 8],
-    ['Honda', 'Civic', 'Sedan', 23800, 5],
-    ['Tesla', 'Model 3', 'Electric', 41990, 3],
-    ['Ford', 'F-150', 'Truck', 38900, 4],
-    ['Subaru', 'Outback', 'Wagon', 29450, 6],
-    ['BMW', 'X5', 'SUV', 65900, 2],
-    ['Mazda', 'MX-5 Miata', 'Convertible', 29900, 1],
-    ['Hyundai', 'Ioniq 5', 'Electric', 43650, 0],
-    ['Jeep', 'Wrangler', 'SUV', 36200, 3],
-    ['Porsche', '911 Carrera', 'Coupe', 114400, 1],
+    ['Tata', 'Nexon', 'SUV', 1149000, 7],
+    ['Mahindra', 'Thar', 'SUV', 1599000, 3],
+    ['Maruti Suzuki', 'Swift', 'Hatchback', 749000, 10],
+    ['Hyundai', 'Creta', 'SUV', 1489000, 5],
+    ['Tata', 'Tiago EV', 'Electric', 949000, 4],
+    ['Mahindra', 'XUV700', 'SUV', 2149000, 2],
+    ['Toyota', 'Fortuner', 'SUV', 3899000, 2],
+    ['Honda', 'City', 'Sedan', 1349000, 4],
+    ['Kia', 'Seltos', 'SUV', 1429000, 3],
+    ['MG', 'ZS EV', 'Electric', 2299000, 0],
+    ['Maruti Suzuki', 'Brezza', 'SUV', 1049000, 6],
+    ['BMW', '3 Series', 'Luxury Sedan', 6250000, 1],
   ] as const;
   samples.forEach(([make, model, category, price, quantity]) => vehicles.create({ make, model, category, price, quantity }));
   console.log(`Seeded ${samples.length} vehicles`);

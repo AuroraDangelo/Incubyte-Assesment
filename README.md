@@ -1,4 +1,4 @@
-# Kerbside Motors – Car Dealership Inventory System
+# Bharat Motors – Car Dealership Inventory System
 
 A full-stack inventory app for a car dealership: a token-secured REST API with a persistent SQL database, and a responsive React single-page app for browsing, searching, purchasing and (for admins) managing vehicles.
 
@@ -28,32 +28,42 @@ Mobile: [`docs/screenshots/08-mobile.png`](docs/screenshots/08-mobile.png) · Re
 
 ## Running locally
 
-Requirements: Node.js 20+ and npm.
+### Prerequisites
+- **Node.js**: `v20.x` or `v22.x` (LTS recommended; tested across Node 20.10+ and 22.x). If using `nvm`, run `nvm use` to automatically select the supported version.
+- **npm**: `v9+` or `v10+`.
+
+> **Node.js Compatibility Note:** The project dependencies (`better-sqlite3@^11.7.0`, `vite@^6.0.11`, `vitest@^2.1.8`) are configured to support both Node 20 and Node 22 without native compilation crashes or missing module errors.
+
+### Quick Start
 
 ```bash
-# 1. install both apps
+# 1. Install dependencies for both apps
 npm run install:all
 
-# 2. configure the backend (optional – sensible dev defaults exist)
-cp backend/.env.example backend/.env      # then edit JWT_SECRET
+# 2. (Optional) Configure environment
+# Sensible development defaults exist in backend/src/config.ts.
+# To override:
+cp backend/.env.example backend/.env    # On Windows: copy backend\.env.example backend\.env
 
-# 3. create the database, an admin user and sample cars
+# 3. Create the database, an admin user and sample cars
 npm run seed
-#    admin login -> admin@dealership.test / Admin@12345
+# Default Admin Login:
+#   Email:    admin@dealership.test
+#   Password: Admin@12345
+# (Tip: run 'npm run seed -- --reset' anytime to reset the showroom inventory)
 
-# 4. start the API (http://localhost:4000)
+# 4. Start the backend API (http://localhost:4000)
 npm run dev:backend
 
-# 5. in another terminal, start the SPA (http://localhost:5173)
+# 5. In another terminal, start the frontend SPA (http://localhost:5173)
 npm run dev:frontend
 ```
 
-The Vite dev server proxies `/api` to the backend (override with `VITE_API_TARGET`).
-`backend/.env` is read by your shell/process manager – export the variables or use `node --env-file=.env`. Without it the defaults in `src/config.ts` apply (production refuses to start without `JWT_SECRET`).
+Open [http://localhost:5173/](http://localhost:5173/) in your browser. The Vite dev server automatically proxies `/api` requests to the backend on `http://localhost:4000`.
 
 **Production build:** `npm --prefix backend run build && npm --prefix backend start` and `npm --prefix frontend run build` (static files in `frontend/dist`).
 
-**Running the tests:** `npm test` (both suites) or `npm run test:report` to regenerate [`docs/test-report.md`](docs/test-report.md).
+**Running the tests:** `npm test` (runs both test suites) or `npm run test:report` to regenerate [`docs/test-report.md`](docs/test-report.md).
 
 ## API
 

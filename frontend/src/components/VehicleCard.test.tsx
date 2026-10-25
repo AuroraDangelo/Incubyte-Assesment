@@ -12,7 +12,7 @@ describe('<VehicleCard />', () => {
     render(<VehicleCard vehicle={car} isAdmin={false} {...handlers()} />);
     expect(screen.getByRole('heading', { name: /honda civic/i })).toBeInTheDocument();
     expect(screen.getByText('Sedan')).toBeInTheDocument();
-    expect(screen.getByText('$22,000')).toBeInTheDocument();
+    expect(screen.getByText(/₹\s*22,000/)).toBeInTheDocument();
     expect(screen.getByText(/3 in stock/i)).toBeInTheDocument();
   });
 
