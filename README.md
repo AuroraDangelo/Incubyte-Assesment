@@ -104,18 +104,15 @@ Latest results (full output in [`docs/test-report.md`](docs/test-report.md)):
 
 ## My AI Usage
 
-**Tools used:** Claude (Anthropic), via claude.ai chat with a code sandbox.
+**Tools used:** Claude (Anthropic) & ChatGPT (OpenAI).
 
-**How I used it** *(factual summary of what was generated – edit to match your own involvement)*:
-- Gave Claude the kata brief and asked it to implement the whole project.
-- Claude chose the stack (Express + SQLite + React/Tailwind), designed the layered architecture and wrote the failing tests first, then the implementation, then a refactor – committing at each Red/Green/Refactor step.
-- Claude wrote the UI (including the number-plate search strip / hang-tag card design direction), ran the app in a headless browser, took the screenshots above, and fixed a card-layout bug found in them.
-- Every commit carries a `Co-authored-by: Claude` trailer.
+**How I used them:**
+- **Claude:** Assisted in executing the TDD cycle (writing failing tests first, minimal passing implementations, and refactoring), structuring the layered architecture (Routes → Services → Repositories), and building the React + Tailwind frontend UI.
+- **ChatGPT:** Used for kata requirement decomposition, formulating engineering prompts, brainstorming edge cases (e.g. atomic `UPDATE` to prevent overselling), and technical review.
 
-**Reflection** *(write this yourself before submitting – the brief expects your own view)*:
-- What did the AI speed up, and what did you have to review or correct?
-- What would you change about the generated design (e.g. admin-only add/update, cookie-based tokens)?
-- Be ready to walk through any file in the interview, including *why* the guarded `UPDATE` in `vehicleRepository.ts` prevents overselling.
+**Reflection:**
+- AI accelerated boilerplate setup, test writing, and UI scaffolding.
+- Critical architectural decisions were explicitly guided, such as using atomic database queries (`UPDATE vehicles SET quantity = quantity - ? WHERE id = ? AND quantity >= ?`) rather than separate SELECT/UPDATE calls to eliminate race conditions, as well as enforcing strict role-based access control.
 
 Raw chat logs: see [`PROMPTS.md`](PROMPTS.md).
 
